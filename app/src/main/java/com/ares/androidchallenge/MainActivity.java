@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getName();
     private final static String url = "https://api.chucknorris.io/jokes";
     private final static String categories = "/categories";
-    private final static String random = "/random?category=";
+    private final static String random = "/random?category={category}";
 
     ListView listView;
     MainAdapter adapter;
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url+random+category,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url+random.replace("{category}",category),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
